@@ -32,7 +32,9 @@ public class CtlCandidato {
     
     
     
-    public LinkedList<ClsCandidato> ObtenerCandidatos(){
+    
+    
+     public LinkedList<ClsCandidato> ObtenerCandidatos(){
     return this.modelo.ObtenerCandidatos();
     
     }

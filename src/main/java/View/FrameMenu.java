@@ -15,6 +15,7 @@ public class FrameMenu extends javax.swing.JFrame {
      */
     public FrameMenu() {
         initComponents();
+        
     }
 
     /**
@@ -129,37 +130,36 @@ public class FrameMenu extends javax.swing.JFrame {
 
     private void buttonGestionarCandidatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGestionarCandidatoActionPerformed
         // TODO add your handling code here:
-        FrameGestionCandidato gestorCandidato = new FrameGestionCandidato();
+        FrameGestionCandidato gestorCandidato = new FrameGestionCandidato(this);
         gestorCandidato.setLocationRelativeTo(this);
         gestorCandidato.setVisible(true);
     }//GEN-LAST:event_buttonGestionarCandidatoActionPerformed
 
     private void buttonInscripcionVotanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonInscripcionVotanteActionPerformed
         // TODO add your handling code here:
-         FrameGestionVotantes gestorVotante = new FrameGestionVotantes();
+         FrameGestionVotantes gestorVotante = new FrameGestionVotantes(this);
         gestorVotante.setLocationRelativeTo(this);
         gestorVotante.setVisible(true);
     }//GEN-LAST:event_buttonInscripcionVotanteActionPerformed
 
     private void buttonGestionarEleccionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGestionarEleccionesActionPerformed
         // TODO add your handling code here:
-        FrameGestionEleccion gestorEleccion = new FrameGestionEleccion();
-        gestorEleccion.setLocationRelativeTo(this);
-        gestorEleccion.setVisible(true);
+        FrameGestionEleccion Eleccion = new FrameGestionEleccion(this);
+        Eleccion.setLocationRelativeTo(this);
+        Eleccion.setVisible(true);
+     
     }//GEN-LAST:event_buttonGestionarEleccionesActionPerformed
 
     private void buttonVotarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonVotarActionPerformed
         // TODO add your handling code here:
-        FrameVotar Votar = new FrameVotar();
+        
+        FrameVotar Votar= new FrameVotar (this);
         Votar.setLocationRelativeTo(this);
         Votar.setVisible(true);
     }//GEN-LAST:event_buttonVotarActionPerformed
 
     private void buttonResultadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonResultadosActionPerformed
         // TODO add your handling code here:
-        FrameResultados Resultados = new FrameResultados();
-        Resultados.setLocationRelativeTo(this);
-        Resultados.setVisible(true);
         
     }//GEN-LAST:event_buttonResultadosActionPerformed
 

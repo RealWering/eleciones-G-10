@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
 package View;
 
 import Classes.ClsCandidato;
@@ -13,7 +17,6 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-
 /**
  *
  * @author user
@@ -23,14 +26,20 @@ public class FrameGestionEleccion extends javax.swing.JFrame {
     CtlCandidato controladorCandidato;
     CtlEleccion controlador;
     ClsMensaje mensaje1;
+      FrameMenu menu;
 
-
-    public FrameGestionEleccion() {
+    /**
+     * Creates new form FrameGestionEleccion
+     */
+    public FrameGestionEleccion(FrameMenu menu) {
         initComponents();
+        this.menu= menu;
+        this.menu.setVisible(false);
+
         this.controlador = new CtlEleccion();
         this.controladorCandidato = new CtlCandidato();
         this.mensaje1 = new ClsMensaje();
-        
+
         this.ObtenerCandidatos();
         this.ObtenerElecciones();
 
@@ -60,29 +69,25 @@ public class FrameGestionEleccion extends javax.swing.JFrame {
     }
 
     public void ActualizarListaElecciones(LinkedList<ClsElecciones> lista) {
-        DefaultTableModel model = (DefaultTableModel) this.listaElecciones.getModel();
+        DefaultTableModel model = (DefaultTableModel) this.listaElecciones1.getModel();
         model.setRowCount(0);
         for (ClsElecciones eleccion : lista) {
             Object[] row = {eleccion.getId(), eleccion.getNombre(), eleccion.getTipo(), eleccion.getFechaInicio(), eleccion.getFechaFinal(), eleccion.getEstado()};
             model.addRow(row);
         }
     }
-    
-    public void ObtenerInscritos(){
-   int column = 0;
-        int row = this.listaElecciones.getSelectedRow();
-        String ide = this.listaElecciones.getModel().getValueAt(row, column).toString();
-      
+
+    public void ObtenerInscritos() {
+        int column = 0;
+        int row = this.listaElecciones1.getSelectedRow();
+        String ide = this.listaElecciones1.getModel().getValueAt(row, column).toString();
+
         LinkedList<ClsCandidato> inscritos = this.controlador.ObtenerInscritos(ide);
-         
-       this.ActualizarListaInscritos(inscritos);
-               
-       
-       
-       
-       
+
+        this.ActualizarListaInscritos(inscritos);
+
     }
-   
+
     public void ActualizarListaInscritos(LinkedList<ClsCandidato> lista) {
         DefaultTableModel model = (DefaultTableModel) this.listaCandidatosInscritos.getModel();
         model.setRowCount(0);
@@ -90,12 +95,8 @@ public class FrameGestionEleccion extends javax.swing.JFrame {
             Object[] row = {inscrip.getNumeroDoc(), inscrip.getNombre(), inscrip.getPartidoPolitico()};
             model.addRow(row);
         }
-        
+
     }
-
-
-    
-   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -106,142 +107,112 @@ public class FrameGestionEleccion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        campoNombre = new javax.swing.JTextField();
         campoFechaIn = new com.toedter.calendar.JDateChooser();
         campoFechaFin = new com.toedter.calendar.JDateChooser();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         buttonCrear = new javax.swing.JButton();
         comboTipo = new javax.swing.JComboBox<>();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        listaElecciones = new javax.swing.JTable();
+        campoNombre = new javax.swing.JTextField();
+        buttonMenu = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
         listaCandidatosInscritos = new javax.swing.JTable();
-        jLabel5 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        listaElecciones1 = new javax.swing.JTable();
         buttonEliminar = new javax.swing.JButton();
         buttonCerrarEleccion = new javax.swing.JButton();
-        buttonEliminarInscripcion = new javax.swing.JButton();
-        buttonInscribirCandidato = new javax.swing.JButton();
+        campoEliminarInscripcion = new javax.swing.JButton();
+        campoInscribir = new javax.swing.JButton();
         comboCandidato = new javax.swing.JComboBox<>();
-        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setText("Geston Eleccion");
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setText("Nombre");
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setText("Tipo");
-
-        campoNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoNombreActionPerformed(evt);
-            }
-        });
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setText("Fecha Inicio");
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel7.setText("Fecha fin");
-
-        buttonCrear.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        buttonCrear.setText("Crear");
+        buttonCrear.setText("Crear ");
         buttonCrear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonCrearActionPerformed(evt);
             }
         });
 
-        comboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Presidencial", "Alcaldia", "Congreso", "Consejo", "Asamblea", "JAC" }));
+        comboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Presidencial", "Congreso", "Municipal", "Departamental" }));
+
+        buttonMenu.setText("Menu");
+        buttonMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonMenuActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Tipo");
+
+        jLabel2.setText("Fecha Inicio");
+
+        jLabel3.setText("Fecha Fin");
+
+        jLabel4.setText("Nombre");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(223, 223, 223)
+                .addGap(151, 151, 151)
                 .addComponent(buttonCrear)
+                .addGap(84, 84, 84)
+                .addComponent(buttonMenu)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(comboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(campoFechaIn, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(jLabel4)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel7)
-                        .addGap(105, 105, 105))
+                        .addComponent(comboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(campoFechaIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(campoFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(campoFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(16, Short.MAX_VALUE))))
+                        .addGap(86, 86, 86)
+                        .addComponent(jLabel1)
+                        .addGap(98, 98, 98)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel3)
+                        .addGap(47, 47, 47))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(campoFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(campoFechaIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(buttonCrear)
-                .addContainerGap(14, Short.MAX_VALUE))
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(campoFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(campoFechaIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(comboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buttonCrear)
+                    .addComponent(buttonMenu))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        listaElecciones.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "Id Elecciones", "Eleccion", "Tipo", "Fecha Inicio", "Fecha Fin", "Estado"
-            }
-        ));
-        listaElecciones.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                listaEleccionesMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(listaElecciones);
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setText(" Listado Elecciones");
 
         listaCandidatosInscritos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -251,23 +222,36 @@ public class FrameGestionEleccion extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "# Cedula", "Nombre", "Partido"
+                "Num Doc", "Nombre", "Partido"
             }
         ));
-        jScrollPane2.setViewportView(listaCandidatosInscritos);
+        jScrollPane1.setViewportView(listaCandidatosInscritos);
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setText(" Listado  Candidatos Inscritos por Eleccion");
+        listaElecciones1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "id Elección", "Elección", "Tipo ", "Fecha Inicio", "Fecha Fin", "Estado"
+            }
+        ));
+        listaElecciones1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listaElecciones1MouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(listaElecciones1);
 
-        buttonEliminar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        buttonEliminar.setText("Eliminar");
+        buttonEliminar.setText("Eliminar Elección");
         buttonEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonEliminarActionPerformed(evt);
             }
         });
 
-        buttonCerrarEleccion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         buttonCerrarEleccion.setText("Cerrar Elección");
         buttonCerrarEleccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -275,116 +259,82 @@ public class FrameGestionEleccion extends javax.swing.JFrame {
             }
         });
 
-        buttonEliminarInscripcion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        buttonEliminarInscripcion.setText("Eliminar Inscripción");
-        buttonEliminarInscripcion.addActionListener(new java.awt.event.ActionListener() {
+        campoEliminarInscripcion.setText("Eliminar Inscripcion");
+        campoEliminarInscripcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonEliminarInscripcionActionPerformed(evt);
+                campoEliminarInscripcionActionPerformed(evt);
             }
         });
 
-        buttonInscribirCandidato.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        buttonInscribirCandidato.setText("Inscribir Candidato");
-        buttonInscribirCandidato.addActionListener(new java.awt.event.ActionListener() {
+        campoInscribir.setText("Inscribir Candidato");
+        campoInscribir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonInscribirCandidatoActionPerformed(evt);
+                campoInscribirActionPerformed(evt);
             }
         });
-
-        comboCandidato.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel8.setText("Candidato");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(262, 262, 262)
-                        .addComponent(jLabel1))
+                        .addGap(11, 11, 11)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(197, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(2, 2, 2)
-                                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(171, 171, 171))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(2, 2, 2)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(buttonEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(buttonCerrarEleccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(comboCandidato, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(buttonInscribirCandidato, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(buttonEliminarInscripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)))))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(17, Short.MAX_VALUE))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(comboCandidato, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonCerrarEleccion)
+                    .addComponent(buttonEliminar)
+                    .addComponent(campoEliminarInscripcion)
+                    .addComponent(campoInscribir))
+                .addGap(29, 29, 29))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(16, 16, 16)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(193, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
+                .addGap(18, 18, 18)
+                .addComponent(buttonEliminar)
+                .addGap(26, 26, 26)
+                .addComponent(buttonCerrarEleccion)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(buttonEliminar)
-                        .addGap(18, 18, 18)
-                        .addComponent(buttonCerrarEleccion)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(buttonInscribirCandidato)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(comboCandidato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(64, 64, 64)
+                        .addComponent(campoEliminarInscripcion)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(buttonEliminarInscripcion)
-                        .addGap(0, 16, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(14, 14, 14))
+                        .addComponent(comboCandidato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(campoInscribir)))
+                .addGap(36, 36, 36))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(121, 121, 121)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(173, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void campoNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoNombreActionPerformed
-
-    private void buttonEliminarInscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEliminarInscripcionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_buttonEliminarInscripcionActionPerformed
-
     private void buttonCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCrearActionPerformed
         // TODO add your handling code here:
-
         String nombre = campoNombre.getText();
         String tipo = comboTipo.getSelectedItem().toString();
         SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
@@ -421,17 +371,16 @@ public class FrameGestionEleccion extends javax.swing.JFrame {
         } catch (Exception e) {
         }
         this.ObtenerElecciones();
-
     }//GEN-LAST:event_buttonCrearActionPerformed
 
     private void buttonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEliminarActionPerformed
         // TODO add your handling code here:
         int column = 0;
-        int row = this.listaElecciones.getSelectedRow();
-        String id = this.listaElecciones.getModel().getValueAt(row, column).toString();
-        String nombre = this.listaElecciones.getModel().getValueAt(row, column + 1).toString();
+        int row = this.listaElecciones1.getSelectedRow();
+        String id = this.listaElecciones1.getModel().getValueAt(row, column).toString();
+        String nombre = this.listaElecciones1.getModel().getValueAt(row, column + 1).toString();
 
-        String tipo = this.listaElecciones.getModel().getValueAt(row, column + 2).toString();
+        String tipo = this.listaElecciones1.getModel().getValueAt(row, column + 2).toString();
         ClsMensaje mensaje = this.controlador.EliminarEleccion(id);
         if (mensaje != null) {
             JOptionPane.showMessageDialog(rootPane, mensaje.getDescripcion() + " " + id + " - " + nombre + " - " + tipo);
@@ -442,12 +391,12 @@ public class FrameGestionEleccion extends javax.swing.JFrame {
     private void buttonCerrarEleccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCerrarEleccionActionPerformed
         // TODO add your handling code here:
         int column = 0;
-        int row = this.listaElecciones.getSelectedRow();
-        String id = this.listaElecciones.getModel().getValueAt(row, column).toString();
-        String nombre = this.listaElecciones.getModel().getValueAt(row, column + 1).toString();
+        int row = this.listaElecciones1.getSelectedRow();
+        String id = this.listaElecciones1.getModel().getValueAt(row, column).toString();
+        String nombre = this.listaElecciones1.getModel().getValueAt(row, column + 1).toString();
 
-        String tipo = this.listaElecciones.getModel().getValueAt(row, column + 2).toString();
-        String estado = this.listaElecciones.getModel().getValueAt(row, column + 5).toString();
+        String tipo = this.listaElecciones1.getModel().getValueAt(row, column + 2).toString();
+        String estado = this.listaElecciones1.getModel().getValueAt(row, column + 5).toString();
 
         if (!estado.equals("cerrada")) {
 
@@ -462,29 +411,49 @@ public class FrameGestionEleccion extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_buttonCerrarEleccionActionPerformed
 
-    private void buttonInscribirCandidatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonInscribirCandidatoActionPerformed
+    private void campoEliminarInscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoEliminarInscripcionActionPerformed
         // TODO add your handling code here:
         int column = 0;
-        int row = this.listaElecciones.getSelectedRow();
-        String id = this.listaElecciones.getModel().getValueAt(row, column).toString();
-        String nombre = this.listaElecciones.getModel().getValueAt(row, column + 1).toString();
-        String tipo = this.listaElecciones.getModel().getValueAt(row, column + 2).toString();
+        int row = this.listaCandidatosInscritos.getSelectedRow();
+        String id = this.listaCandidatosInscritos.getModel().getValueAt(row, column).toString();
+        String nombre = this.listaCandidatosInscritos.getModel().getValueAt(row, column + 1).toString();
+
+        String tipo = this.listaCandidatosInscritos.getModel().getValueAt(row, column + 2).toString();
+        ClsMensaje mensaje = this.controlador.EliminarInscripcion(id);
+        if (mensaje != null) {
+            JOptionPane.showMessageDialog(rootPane, mensaje.getDescripcion() + " " + id + " - " + nombre + " - " + tipo);
+            this.ObtenerInscritos();
+        }
+
+    }//GEN-LAST:event_campoEliminarInscripcionActionPerformed
+
+    private void campoInscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoInscribirActionPerformed
+        // TODO add your handling code here:
+        int column = 0;
+        int row = this.listaElecciones1.getSelectedRow();
+        String id = this.listaElecciones1.getModel().getValueAt(row, column).toString();
+        String nombre = this.listaElecciones1.getModel().getValueAt(row, column + 1).toString();
+        String tipo = this.listaElecciones1.getModel().getValueAt(row, column + 2).toString();
         String[] y = this.comboCandidato.getSelectedItem().toString().split("-", 2);
         String h = y[0];
 
         ClsMensaje mensaje = this.controlador.InscribirCandidato(h, id);
         if (mensaje != null) {
             JOptionPane.showMessageDialog(rootPane, mensaje.getDescripcion() + " " + y[1] + " fué inscrito en la elección " + nombre + " - " + tipo);
-            this.ObtenerElecciones();
+            this.ObtenerInscritos();
         }
+    }//GEN-LAST:event_campoInscribirActionPerformed
 
-    }//GEN-LAST:event_buttonInscribirCandidatoActionPerformed
-
-    private void listaEleccionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaEleccionesMouseClicked
+    private void listaElecciones1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaElecciones1MouseClicked
         // TODO add your handling code here:
-     //this.ObtenerInscritos();
-        
-    }//GEN-LAST:event_listaEleccionesMouseClicked
+        this.ObtenerInscritos();
+    }//GEN-LAST:event_listaElecciones1MouseClicked
+
+    private void buttonMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMenuActionPerformed
+        // TODO add your handling code here:
+         this.setVisible(false);
+         this.menu.setVisible(true);
+    }//GEN-LAST:event_buttonMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -512,12 +481,11 @@ public class FrameGestionEleccion extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(FrameGestionEleccion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrameGestionEleccion().setVisible(true);
+                new FrameGestionEleccion(null).setVisible(true);
             }
         });
     }
@@ -526,10 +494,11 @@ public class FrameGestionEleccion extends javax.swing.JFrame {
     private javax.swing.JButton buttonCerrarEleccion;
     private javax.swing.JButton buttonCrear;
     private javax.swing.JButton buttonEliminar;
-    private javax.swing.JButton buttonEliminarInscripcion;
-    private javax.swing.JButton buttonInscribirCandidato;
+    private javax.swing.JButton buttonMenu;
+    private javax.swing.JButton campoEliminarInscripcion;
     private com.toedter.calendar.JDateChooser campoFechaFin;
     private com.toedter.calendar.JDateChooser campoFechaIn;
+    private javax.swing.JButton campoInscribir;
     private javax.swing.JTextField campoNombre;
     private javax.swing.JComboBox<String> comboCandidato;
     private javax.swing.JComboBox<String> comboTipo;
@@ -537,15 +506,10 @@ public class FrameGestionEleccion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable listaCandidatosInscritos;
-    private javax.swing.JTable listaElecciones;
+    private javax.swing.JTable listaElecciones1;
     // End of variables declaration//GEN-END:variables
-
-  
+}

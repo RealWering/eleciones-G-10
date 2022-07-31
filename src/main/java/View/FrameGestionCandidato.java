@@ -19,15 +19,22 @@ import javax.swing.table.DefaultTableModel;
 public class FrameGestionCandidato extends javax.swing.JFrame {
 
     CtlCandidato controlador;
+    FrameMenu menu;
 
     /**
      * Creates new form FrameResultados
      */
-    public FrameGestionCandidato() {
+    public FrameGestionCandidato(FrameMenu menu) {
         initComponents();
+        this.menu= menu;
+        this.menu.setVisible(false);
         this.controlador = new CtlCandidato();
         this.ObtenerCandidatos();
         
+    }
+
+    FrameGestionCandidato() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
         
@@ -83,6 +90,7 @@ public class FrameGestionCandidato extends javax.swing.JFrame {
         buttonEliminar = new javax.swing.JButton();
         buttonEditar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        buttonMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -267,26 +275,35 @@ public class FrameGestionCandidato extends javax.swing.JFrame {
         jLabel1.setText("Gestionar Candidatos");
         jLabel1.setRequestFocusEnabled(false);
 
+        buttonMenu.setText("Menu");
+        buttonMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonMenuActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(119, 119, 119)
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Jpane, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Jpane, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(119, 119, 119)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(buttonMenu)
+                .addGap(24, 24, 24))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(buttonMenu))
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(Jpane, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))
@@ -345,6 +362,15 @@ public class FrameGestionCandidato extends javax.swing.JFrame {
         
     }//GEN-LAST:event_buttonEliminarActionPerformed
 
+    private void buttonMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMenuActionPerformed
+        // TODO add your handling code here:
+         this.setVisible(false);
+         this.menu.setVisible(true);
+       
+      
+        
+    }//GEN-LAST:event_buttonMenuActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -378,7 +404,8 @@ public class FrameGestionCandidato extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrameGestionCandidato().setVisible(true);
+                new FrameGestionCandidato(null).setVisible(true);
+                
             }
         });
     }
@@ -388,6 +415,7 @@ public class FrameGestionCandidato extends javax.swing.JFrame {
     private javax.swing.JButton buttonAgregar;
     private javax.swing.JButton buttonEditar;
     private javax.swing.JButton buttonEliminar;
+    private javax.swing.JButton buttonMenu;
     private javax.swing.JTextField campoCedula;
     private javax.swing.JTextField campoCiudad;
     private javax.swing.JTextField campoNombre;
